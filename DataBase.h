@@ -4,7 +4,6 @@
 
 
 class DataBase {
-
 public:
 	DataBase(std::string _path){ path = _path; }
 
@@ -24,6 +23,4 @@ private:
 	int writeInFile(Student);     // записать в файл студента
 	int createRB(Student);        // создать файл зачётки
 	int getLastID();              // получить последний ID
-
-
 };

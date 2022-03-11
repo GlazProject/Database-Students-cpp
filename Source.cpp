@@ -3,5 +3,5 @@
 
 int main() {
 	DataBase DB("students.cppDB");
-
+	DB.printAll();
 }
