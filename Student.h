@@ -1,36 +1,33 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
+#include <string>
 #include <fstream>
 
 class Student {
 public:
-	Student(int _id, std::string _name) {
-		id = _id;
-		name = _name;
+	Student(int id = 0, std::string name = "") {
+		this->id = id;
+		this->name = name;
 	}
 
-	Student(std::string _name) {
-		id = 0;
-		name = _name;
+	Student(std::string name) {
+		this->id = 0;
+		this->name = name;
 	}
 
-	Student() {
-		id = 0;
-		name = "";
-	}
+	void print();                                                                       // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	int getId() { return id; }                                                          // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ID
+	std::string getName() { return name; }                                              // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
 
-	void print();                                                           // печать в консоль красиво
-	int _id() { return id; }                                                // вернуть ID
-	int const _size() { return q; }                                         // вернуть кличесво полей структуры
-	std::string _name() { return name; }                                    // вернуть ФИО
-	
-	friend std::istream& operator>>(std::istream& os, Student& student);     // считывание из консоли
-	friend std::ostream& operator<<(std::ostream& os, Student& student);     // запись в консоль
-	friend std::ifstream& operator>>(std::ifstream& os, Student& student);   // считывание из файла
-	friend std::ofstream& operator<<(std::ofstream& os, Student& student);   // запись в файл
+	friend std::istream& operator>>(std::istream& os, Student& student);     // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	friend std::ostream& operator<<(std::ostream& os, Student& student);     // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	friend std::ifstream& operator>>(std::ifstream& os, Student& student);   // СЃС‡РёС‚С‹РІР°РЅРёРµ РёР· С„Р°Р№Р»Р°
+	friend std::ofstream& operator<<(std::ofstream& os, Student& student);   // Р·Р°РїРёСЃСЊ РІ С„Р°Р№Р»
 
 private:
 	int id;
-	int const q = 2;
+	int groopId;
+	std::string spec;
 	std::string name;
+
 };

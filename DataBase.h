@@ -1,26 +1,30 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
+#include <string>
+#include <list>
 #include "Student.h"
-
 
 class DataBase {
 public:
-	DataBase(std::string _path){ path = _path; }
+	DataBase(std::string path) { this->path = path; };
+	std::list<Student> find(std::string coll, std::string value, std::list<Student> listToFind);
+	std::list<Student> findAll();
 
-	Student find(int);            // поиск по id
-	Student find(std::string);    // поиск по одному из данных
-
-	int append(Student);          // добавление в конец БД студента
-	int update(Student);          // обновить запись о студенте
-	int remove(Student);          // удалить студента
-	int printAll();               // вывести всю бд
+	short append(Student student);    
+	//short update(Student student);     
+	//short remove(Student student);     
+	short printAll();       
 
 private:
-	std::string path;             // путь до нужной папки
+	const int numberOfColumns = 3;
+	const int sizeOfId = 10;
+	const int sizeOfName = 50;
+
+	std::string path;
 	std::ifstream fin;
 	std::ofstream fout;
 
-	int writeInFile(Student);     // записать в файл студента
-	int createRB(Student);        // создать файл зачётки
-	int getLastID();              // получить последний ID
+	//int writeInFile(Student student); 
+	//int createRB(Student);    
+	int getLastID();             
 };

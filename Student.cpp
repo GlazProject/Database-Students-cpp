@@ -2,7 +2,7 @@
 
 void Student::print() {
 	std::cout << "------------------------------------------------------------------------------------------\n";
-	std::cout << "| Student id #" << _id() << "\n| 		Student name: " << _name() << std::endl;
+	std::cout << "| Student id #" << this->getId() << "\n\t 		Student name: " << this->getName() << std::endl;
 	std::cout << "|\n------------------------------------------------------------------------------------------\n\n";
 }
 
@@ -21,7 +21,7 @@ std::istream& operator>>(std::istream& os, Student& student)
 
 std::ostream& operator<<(std::ostream& os, Student& student)
 {
-	os << student.id << "	" << student.id;
+	os << student.id << "	" << student.name;
 	return os;
 }
 
@@ -40,6 +40,6 @@ std::ifstream& operator>>(std::ifstream& os, Student& student)
 
 std::ofstream& operator<<(std::ofstream& os, Student& student)
 {
-	os << student.id << "	" << student.id;
+	os << student.id << "	" << student.name;
 	return os;
 }
