@@ -5,5 +5,12 @@ int main() {
 	DataBase DB("students.cppDB");
 	DB.printAll();
 	Student st("tmp");
-	DB.find("name", "anton", DB.findAll());
+
+	std::list<Student> selected = DB.find("name=Nikita");
+	std::cout << "Selected students by \"name=Nikita\"" << std::endl;
+	for (auto st : selected) {
+		std::cout << st << std::endl;
+	}
+	std::cout << "The end" << std::endl;
+
 }

@@ -9,6 +9,7 @@ public:
 	DataBase(std::string path) { this->path = path; };
 	std::list<Student> find(std::string coll, std::string value, std::list<Student> listToFind);
 	std::list<Student> findAll();
+	std::list<Student> find(std::string commandStr);
 
 	short append(Student student);    
 	//short update(Student student);     

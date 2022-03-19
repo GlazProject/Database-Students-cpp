@@ -63,15 +63,15 @@ std::list<Student> DataBase::find(std::string coll, std::string value, std::list
 				goodUsers.push_back(stud);
 			break;
 		case(2):
-			if (stud.getName() == value)
+			if (stud.getName().find(value)!=-1)
 				goodUsers.push_back(stud);
 			break;
 		case(3):                                            // create return groop
-			if (stud.getName() == value)
+			if (stud.getName().find(value) != -1)
 				goodUsers.push_back(stud);
 			break;
 		case(4):                                             // create return cpec
-			if (stud.getName() == value)
+			if (stud.getName().find(value) != -1)
 				goodUsers.push_back(stud);
 			break;
 		}
@@ -99,6 +99,43 @@ std::list<Student> DataBase::findAll()
 	fin.close();
 	return allUsers;
 }
+
+std::pair<std::string, std::string> parse(std::string command) {
+	std::string coll = "", value = "";
+	bool collIsReady = false;
+	for (int j = 0; j < command.size(); j++) {
+		if (command[j] != '=') {
+			if (!collIsReady) coll += command[j];
+			else value += command[j];
+			continue;
+		}
+		collIsReady = true;
+	}
+	return std::make_pair(coll, value);
+}
+
+std::list<Student> DataBase::find(std::string commandStr)
+{
+	std::list<std::pair<std::string, std::string>> queueOfSelect;
+	std::string command ="";
+	for (int i = 0; i < commandStr.size(); i++) {
+		if (commandStr[i] != ' ') {
+			command += commandStr[i];
+			continue;
+		}
+
+		queueOfSelect.push_back(parse(command));
+	}
+	if(command!="") queueOfSelect.push_back(parse(command));
+	
+
+	auto selected = findAll();
+	for (auto p : queueOfSelect) {
+		selected = find(p.first, p.second, selected);
+	}
+	return selected;
+}
+
 
 short DataBase::append(Student student) {
 	fout.open(this->path, std::ios::app);
